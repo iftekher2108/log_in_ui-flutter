@@ -103,9 +103,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     Text(
                       'Login System'.toUpperCase(),
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.lightBlue,
                         fontSize: 30,
                         fontFamily: 'roboto-bold',
+                        fontWeight: FontWeight.w900,
                         letterSpacing: 3,
                       ),
                     ),
@@ -120,6 +121,14 @@ class _MyHomePageState extends State<MyHomePage> {
                            color: Colors.white,
                          ),
                           decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Colors.lightBlue,
+                                  width: 2,
+                                style: BorderStyle.solid,
+                              ),
+                            ),
                             labelText: "E-mail",
                             labelStyle: TextStyle(
                               color: Colors.white,
@@ -140,6 +149,14 @@ class _MyHomePageState extends State<MyHomePage> {
                           color: Colors.white,
                         ),
                         decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.lightBlue,
+                                width: 2,
+                                style: BorderStyle.solid,
+                              ),
+                            ),
                             labelText: "Password",
                             labelStyle: TextStyle(
                               color: Colors.white,
