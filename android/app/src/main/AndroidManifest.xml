@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="outsite_attendance_system"
+        android:label="Attendance System"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
