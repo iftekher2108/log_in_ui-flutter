@@ -29,19 +29,19 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
+  final dio = Dio();
+  final emailText = TextEditingController();
+  final passwordText = TextEditingController();
 
-      _counter++;
-    });
-  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -117,6 +117,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: EdgeInsets.symmetric(horizontal: 20),
                        margin: EdgeInsets.only(bottom: 20),
                        child: TextField(
+                         keyboardType: TextInputType.emailAddress,
+                         controller: emailText,
                          style: TextStyle(
                            color: Colors.white,
                          ),
@@ -144,6 +146,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       margin: EdgeInsets.only(bottom: 20),
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: TextField(
+                        controller: passwordText,
+                        enableInteractiveSelection: false,
+                        toolbarOptions: ToolbarOptions(
+                          paste: false,
+                          cut: false,
+                          copy: false,
+                          selectAll: false,
+                        ),
+                        keyboardType: TextInputType.number,
                         obscureText: true,
                         style: TextStyle(
                           color: Colors.white,
@@ -172,9 +183,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 30,
                     ),
                     Container(
-                      child: FilledButton(onPressed:() {
+                      child: FilledButton(
+                        onPressed:() {
 
-                      },
+                          print("this is Email: ${emailText.text}");
+                          print("this is password: ${passwordText.text}");
+
+                        },
                         style: ButtonStyle(
                           shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
@@ -198,8 +213,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       // floatingActionButton: FloatingActionButton(
       //   backgroundColor: Colors.lightBlue,
-      //   onPressed: _incrementCounter,
-      //   tooltip: 'Increment',
+      //   onPressed:,
+      //   tooltip: '',
       //   child: const Icon(Icons.add),
       // ),
     );
