@@ -1,8 +1,11 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:outsite_attendance_system/pages/loading.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:outsite_attendance_system/pages/loading.dart';
 
 class login extends StatefulWidget {
   login({super.key, required this.title});
@@ -84,7 +87,7 @@ class _loginState extends State<login> {
                 flex: 2,
                 child: Text(
                   'Login System'.toUpperCase(),
-                  style: Theme.of(context).textTheme.headlineMedium,
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),
               Expanded(
@@ -156,22 +159,12 @@ class _loginState extends State<login> {
                             log_in;
                             Navigator.pushNamed(context,'dashboard');
                           },
-                          style: ButtonStyle(
-                              shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(5))
-                                  )
-                              ),
-                              backgroundColor:MaterialStatePropertyAll<Color>(Colors.lightBlue),
-                              padding: MaterialStatePropertyAll<EdgeInsets>(EdgeInsets.symmetric(vertical: 15, horizontal: 120))
+                          style: Theme.of(context).textButtonTheme.style?.copyWith( padding: MaterialStatePropertyAll<EdgeInsets>(EdgeInsets.symmetric(vertical: 15, horizontal: 120))),
+                          child: Text("Log In",style: Theme.of(context).textTheme.labelMedium
                           ),
-                          child: Text("Log In",style: TextStyle(
-                            fontSize: 15,
-                            letterSpacing: 3,
-                            color: Colors.white,
-                          ),),
                         )
                     ),
+
                   ],
                 ),
               ),
