@@ -1,14 +1,16 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:outsite_attendance_system/pages/loading.dart';
+import 'package:get/get.dart';
+import 'package:outsite_attendance_system/controller/loginController.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:outsite_attendance_system/pages/loading.dart';
+import 'package:outsite_attendance_system/controller/loginController.dart';
+
 
 class login extends StatefulWidget {
-  login({super.key, required this.title});
+   login({super.key, required this.title});
   final String title;
 
   @override
@@ -20,22 +22,24 @@ class _loginState extends State<login> {
 
   final emailText = TextEditingController();
   final passwordText = TextEditingController();
+  final login_control = Get.put(loginController());
+  final box = GetStorage();
 
-  void log_in() async {
-    // var res = await http.get(Uri.parse('http://10.0.2.2:8000/api/get-data'));
-    var res = await http.post(
-        Uri.parse('http://10.0.2.2:8000/api/user-data'),
-        body: {
-          "name":"Iftekher Mahmud",
-          'email':"${emailText.text}",
-          'password':"${passwordText.text}"
-        }
-    );
-
-    print(jsonEncode(res.body));
-
-
-  }
+  // void log_in() async {
+  //   var res = await http.get(Uri.parse('http://10.0.2.2:8000/api/get-data'));
+  //   // var res = await http.post(
+  //   //     Uri.parse('http://10.0.2.2:8000/api/user-data'),
+  //   //     body: {
+  //   //       "name":"Iftekher Mahmud",
+  //   //       'email':emailText.text,
+  //   //       'password':passwordText.text
+  //   //     }
+  //   // );
+  //   print(res.body);
+  //   // print(jsonEncode(res.body));
+  //
+  //
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +67,9 @@ class _loginState extends State<login> {
       ),
 
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding:  EdgeInsets.all(20),
         alignment: Alignment.centerLeft,
-        decoration: BoxDecoration(
+        decoration:  BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
               'images/background.jpg',
@@ -78,7 +82,6 @@ class _loginState extends State<login> {
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaY: 3,sigmaX: 3),
           child: Column(
-            mainAxisSize: MainAxisSize.max,
             children: [
               SizedBox(
                 height: 70,
@@ -86,7 +89,7 @@ class _loginState extends State<login> {
               Expanded(
                 flex: 2,
                 child: Text(
-                  'Login System'.toUpperCase(),
+                  'Login'.toUpperCase(),
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),
@@ -96,8 +99,8 @@ class _loginState extends State<login> {
                   children: [
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
-                      margin: EdgeInsets.only(bottom: 20),
-                      child: TextField(
+                      margin:  EdgeInsets.only(bottom: 20),
+                      child:TextField(
                         keyboardType: TextInputType.emailAddress,
                         controller: emailText,
                         style: TextStyle(
@@ -119,7 +122,7 @@ class _loginState extends State<login> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(bottom: 20),
+                      margin:  EdgeInsets.only(bottom: 20),
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: TextField(
                         controller: passwordText,
@@ -136,7 +139,7 @@ class _loginState extends State<login> {
                         keyboardType: TextInputType.number,
                         obscureText: true,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(),
+                          border:  OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Colors.lightBlue,
@@ -150,16 +153,25 @@ class _loginState extends State<login> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                     SizedBox(
                       height: 20,
                     ),
                     Container(
                         child: FilledButton(
                           onPressed:(){
-                            log_in;
-                            Navigator.pushNamed(context,'dashboard');
+                            // log_in;
+                            login_control.login(emailText.text,passwordText.text);
+                            box.write('name','Iftekher Mahmud');
+                            box.write('email',emailText.text.toString());
+                            box.write('password', passwordText.text.toString());
+
+                            Get.offNamed('/dashboard',arguments: {
+                              'email': emailText.text.toString(),
+                              'password':passwordText.text.toString()
+                            });
+
                           },
-                          style: Theme.of(context).textButtonTheme.style?.copyWith( padding: MaterialStatePropertyAll<EdgeInsets>(EdgeInsets.symmetric(vertical: 15, horizontal: 120))),
+                          style: Theme.of(context).textButtonTheme.style?.copyWith( padding: const WidgetStatePropertyAll<EdgeInsets>(EdgeInsets.symmetric(vertical: 15, horizontal: 120))),
                           child: Text("Log In",style: Theme.of(context).textTheme.labelMedium
                           ),
                         )

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class dash_card extends StatefulWidget {
@@ -32,30 +31,30 @@ class dash_cardState extends State<dash_card> {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          color: widget.backgroundColor == null ? Theme.of(context).primaryColor : widget.backgroundColor,
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          color: widget.backgroundColor ?? Theme.of(context).primaryColor,
         ),
         height: 120,
-        margin:EdgeInsets.all(5),
-        padding: EdgeInsets.all(10),
+        margin:const EdgeInsets.all(5),
+        padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             Text(widget.title.toUpperCase(),
-              style:Theme.of(context).textTheme.headlineMedium?.copyWith(color: widget.color == null ? Colors.black54 : widget.color),
+              style:Theme.of(context).textTheme.headlineMedium?.copyWith(color: widget.color ?? Colors.black54),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Total",style: TextStyle(
-                    color: widget.color == null ? Colors.black54 : widget.color,
+                    color: widget.color ?? Colors.black54,
                   ),),
                   Text(widget.value,style: TextStyle(
-                  color: widget.color == null ? Colors.black54 : widget.color,
+                  color: widget.color ?? Colors.black54,
                   ),),
                 ],
               ),

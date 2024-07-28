@@ -1,6 +1,6 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
+import 'package:get/get.dart';
 class loading extends StatefulWidget {
   const loading({super.key});
   @override
@@ -11,23 +11,13 @@ class _loadingState extends State<loading> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-
-    Future.delayed(Duration(seconds: 2),(){
-      Navigator.of(context).pushReplacementNamed("login");
+    Timer(Duration(seconds: 2),(){
+      // Navigator.of(context).pushReplacementNamed("login");
+      Get.offNamed('/login');
     });
 
   }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,overlays: SystemUiOverlay.values);
-    super.dispose();
-  }
-
 
 
   @override
@@ -49,16 +39,13 @@ class _loadingState extends State<loading> with SingleTickerProviderStateMixin {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                  height: 85,
-                  width: 85,
+                  height: 55,
+                  width: 55,
                   child: CircularProgressIndicator(
                     strokeWidth: 5,
                     color: Colors.white,
                   )
               ),
-              SizedBox(height: 30,),
-        
-              Text("Loading..."),
             ],
           ),
         ),

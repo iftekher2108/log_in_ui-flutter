@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Fingerprint extends StatefulWidget {
@@ -21,7 +20,7 @@ class _FingerprintState extends State<Fingerprint> {
         ],
       ),
       body: Container(
-        child: Text("finger print"),
+        child: const Text("finger print"),
       ),
     );
   }

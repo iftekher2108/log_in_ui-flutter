@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:face_camera/face_camera.dart';
 
@@ -13,16 +12,20 @@ class Facedetect extends StatefulWidget {
 class _FacedetectState extends State<Facedetect> {
 
   late FaceCameraController controller;
-
+  File? capturedImage;
+  String data="name is parvez";
   @override
   void initState(){
-
     controller = FaceCameraController(
       autoCapture: true,
       defaultCameraLens: CameraLens.front,
       onCapture: (File? image) {
-
+       setState(() => capturedImage = image);
+       Navigator.of(context).pushNamed("image-preview",arguments:{ "image": data, });
       },
+      onFaceDetected: (Face? face) {
+
+      }
     );
     super.initState();
   }
