@@ -160,15 +160,17 @@ class _loginState extends State<login> {
                         child: FilledButton(
                           onPressed:(){
                             // log_in;
-                            login_control.login(emailText.text,passwordText.text);
-                            box.write('name','Iftekher Mahmud');
-                            box.write('email',emailText.text.toString());
-                            box.write('password', passwordText.text.toString());
+                            // login_control.login(emailText.text,passwordText.text);
+                            // box.write('name','Iftekher Mahmud');
+                            // box.write('email',emailText.text.toString());
+                            // box.write('password', passwordText.text.toString());
 
-                            Get.offNamed('/dashboard',arguments: {
-                              'email': emailText.text.toString(),
-                              'password':passwordText.text.toString()
-                            });
+                            // Get.offNamed('/dashboard',arguments: {
+                            //   'email': emailText.text.toString(),
+                            //   'password':passwordText.text.toString()
+                            // });
+
+                            login_control.user_data();
 
                           },
                           style: Theme.of(context).textButtonTheme.style?.copyWith( padding: const WidgetStatePropertyAll<EdgeInsets>(EdgeInsets.symmetric(vertical: 15, horizontal: 120))),

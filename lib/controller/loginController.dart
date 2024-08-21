@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 class loginController extends GetxController {
@@ -20,5 +19,11 @@ class loginController extends GetxController {
     final name;
   }
 
+  void user_data() async {
+    final url = Uri.parse('https://randomuser.me/api/');
+    final data = await http.get(url);
+    var users = jsonDecode(data.body);
+    print(users['results'][0]['name']['first']);
+  }
 
 }
